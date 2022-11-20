@@ -16,7 +16,7 @@ public class UserService {
     }
 
     public boolean register(String login, String password,
-                            String name, String lastName){
+                            String name, String lastName, String url){
         List<String> logins = userRepo.findLogins();
         if (logins.contains(logins)){
             return false;
@@ -26,6 +26,7 @@ public class UserService {
         userModel.setLastName(lastName);
         userModel.setPassword(password);
         userModel.setLogin(login);
+        userModel.setUrl(url);
         userRepo.save(userModel);
         return true;
     }

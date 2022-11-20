@@ -21,8 +21,9 @@ public class UserController {
     public boolean register(@RequestParam String login,
                          @RequestParam String password,
                          @RequestParam String name,
-                         @RequestParam String lastName){
-        return userService.register(login, password, name, lastName);
+                         @RequestParam String lastName,
+                            @RequestParam String url){
+        return userService.register(login, password, name, lastName, url);
     }
 
     @PostMapping("/login")
