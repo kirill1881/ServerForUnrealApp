@@ -10,4 +10,5 @@ public interface UserRepo extends JpaRepository<UserModel, Long> {
     UserModel findUserModelByLogin(String login);
     @Query(value = "select login from user_app", nativeQuery = true)
     List<String> findLogins();
+
 }
