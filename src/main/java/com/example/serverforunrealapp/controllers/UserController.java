@@ -18,7 +18,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public boolean register(@RequestParam String login,
+    public long register(@RequestParam String login,
                          @RequestParam String password,
                          @RequestParam String name,
                          @RequestParam String lastName,
@@ -35,5 +35,18 @@ public class UserController {
     @GetMapping("/get")
     public String getUser(){
         return userRepo.findAll().toString();
+    }
+
+    @PostMapping
+    public boolean editName( @RequestParam long id, @RequestParam String newName) {
+        return userService.editName(id, newName);
+    }
+    @PostMapping
+    public boolean editLastName( @RequestParam long id, @RequestParam String newLastName) {
+        return userService.editLastName(id, newLastName);
+    }
+    @PostMapping
+    public boolean editUrl( @RequestParam long id, @RequestParam String url) {
+        return userService.editUrl(id, url);
     }
 }

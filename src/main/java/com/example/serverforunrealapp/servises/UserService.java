@@ -15,11 +15,11 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
-    public boolean register(String login, String password,
+    public long register(String login, String password,
                             String name, String lastName, String url){
         List<String> logins = userRepo.findLogins();
         if (logins.contains(logins)){
-            return false;
+            return 0;
         }
         UserModel userModel = new UserModel();
         userModel.setName(name);
@@ -28,7 +28,8 @@ public class UserService {
         userModel.setLogin(login);
         userModel.setUrl(url);
         userRepo.save(userModel);
-        return true;
+
+        return userRepo.findUserModelByLogin(login).getId();
     }
     public String login(String login, String password){
         UserModel userModel = null;
@@ -39,5 +40,23 @@ public class UserService {
             return userModel.toString();
         }
         return "not correct password";
+    }
+    public boolean editName(long id, String newName) {
+        UserModel userModel = userRepo.getUserModelById(id);
+        userModel.setName(newName);
+        userRepo.save(userModel);
+        return true;
+    }
+    public boolean editLastName(long id, String newLastName) {
+        UserModel userModel = userRepo.getUserModelById(id);
+        userModel.setLastName(newLastName);
+        userRepo.save(userModel);
+        return true;
+    }
+    public boolean editUrl(long id, String url) {
+        UserModel userModel = userRepo.getUserModelById(id);
+        userModel.setUrl(url);
+        userRepo.save(userModel);
+        return true;
     }
 }
