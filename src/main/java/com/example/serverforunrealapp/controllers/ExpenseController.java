@@ -48,4 +48,8 @@ public class ExpenseController {
     public List<ExpenseModel> getAll(){
         return expenseRepo.findAll();
     }
+    @GetMapping("/get")
+    public List<ExpenseModel> getAl(){
+        return expenseRepo.findAll();
+    }
 }
