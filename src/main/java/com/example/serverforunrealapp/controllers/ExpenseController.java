@@ -9,6 +9,7 @@ import com.example.serverforunrealapp.servises.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -45,8 +46,10 @@ public class ExpenseController {
         return expService.getSum(id);
     }
     @GetMapping("/getById/{userId}")
-    public List<ExpenseModel> getAll(){
-        return expenseRepo.findAll();
+    public List<ExpenseModel> getAll(@PathVariable long userId){
+       List<ExpenseModel> list = expenseRepo.findAll();
+       list = list.stream().filter(e -> e.getUserModel().getId()==userId).collect(Collectors.toList());
+       return list;
     }
     @GetMapping("/get")
     public List<ExpenseModel> getAl(){
