@@ -37,15 +37,15 @@ public class UserController {
         return userRepo.findAll().toString();
     }
 
-    @PostMapping
+    @PostMapping("/editName")
     public boolean editName( @RequestParam long id, @RequestParam String newName) {
         return userService.editName(id, newName);
     }
-    @PostMapping
+    @PostMapping("/editLastName")
     public boolean editLastName( @RequestParam long id, @RequestParam String newLastName) {
         return userService.editLastName(id, newLastName);
     }
-    @PostMapping
+    @PostMapping("/editUrl")
     public boolean editUrl( @RequestParam long id, @RequestParam String url) {
         return userService.editUrl(id, url);
     }
